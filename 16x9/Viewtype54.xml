@@ -15,6 +15,9 @@
 					<aspectratio align="center">scale</aspectratio>
 					<texture background="true" fallback="DefaultAlbumCover.png">$INFO[ListItem.Icon]</texture>
 				</control>
+				<control type="multiimage">
+					<include>ShineSquare</include>
+				</control>
 				<control type="image">
 					<left>-48</left>
 					<centertop>288</centertop>

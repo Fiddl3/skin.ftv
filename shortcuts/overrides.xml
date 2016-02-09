@@ -38,4 +38,16 @@
 	<shortcut label="31188" type="music" grouping="music" icon="ftv_icon.png">ActivateWindow(MusicLibrary,musicdb://top100/albums/,return)</shortcut>
 	<shortcut label="31189" type="music" grouping="music" icon="ftv_icon.png">ActivateWindow(MusicLibrary,musicdb://top100/songs/,return)</shortcut>
 	<shortcut label="31190" type="music" grouping="music" icon="ftv_icon.png">ActivateWindow(MusicLibrary,musicdb://songs/,return)</shortcut>
+
+	
+  <!-- =========== -->
+  <!-- Backgrounds -->
+  <!-- =========== -->
+  <backgroundBrowse default="special://skin/extras/backgrounds/">True</backgroundBrowse>
+  <background label="Movies Fanart" condition="System.HasAddon(script.grab.fanart)">$INFO[Window(Home).Property(script.grab.fanart.Movie.FanArt)]</background>
+  <background label="TV Shows Fanart" condition="System.HasAddon(script.grab.fanart)">$INFO[Window(Home).Property(script.grab.fanart.TV.FanArt)]</background>
+  <background label="Videos Fanart" condition="System.HasAddon(script.grab.fanart)">$INFO[Window(Home).Property(script.grab.fanart.Video.FanArt)]</background>
+  <background label="Music Fanart" condition="System.HasAddon(script.grab.fanart)">$INFO[Window(Home).Property(script.grab.fanart.Music.FanArt)]</background>
+  <background label="Mixed Fanart" condition="System.HasAddon(script.grab.fanart)">$INFO[Window(Home).Property(script.grab.fanart.Global.FanArt)]</background>
+	
 </overrides>

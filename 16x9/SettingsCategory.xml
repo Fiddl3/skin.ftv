@@ -7,6 +7,9 @@
 	<onload condition="!StringCompare(Window(settings).Property(SettingsCurrentItem),9)">SetFocus(3)</onload>
 	<onload condition="StringCompare(Window(settings).Property(SettingsCurrentItem),9)">SetFocus(9001)</onload>
 	<controls>
+		<include>BackgroundImage</include>
+		<include>BackgroundContent</include>
+
 		<control id="6" type="label">
 			<font>-</font>
 		</control>

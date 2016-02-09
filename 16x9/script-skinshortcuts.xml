@@ -215,6 +215,22 @@
 					<label>$ADDON[script.skinshortcuts 32072] #$INFO[Container(211).CurrentItem]</label>
 					<visible>IntegerGreaterThan(Container(211).CurrentItem,8) | StringCompare(Container(211).ListItem.Property(defaultID),settings) | StringCompare(Container(211).ListItem.Property(defaultID),weather) | StringCompare(Container(211).ListItem.Property(defaultID),favourites)</visible>
 				</control>
+				<!-- Change Home Background -->
+				<control type="button" id="310">
+					<width>870</width>
+					<height>84</height>
+					<font>Light32</font>
+					<textwidth>790</textwidth>
+					<textoffsetx>40</textoffsetx>
+					<textcolor>ff505153</textcolor>
+					<focusedcolor>ffffaf37</focusedcolor>
+					<disabledcolor>ffff0000</disabledcolor>
+					<texturefocus border="3">settings/button_focus.png</texturefocus>
+					<texturenofocus border="3">settings/button_no_focus.png</texturenofocus>
+					<label>$ADDON[script.skinshortcuts 32045]</label>
+					<label2>$INFO[Container(211).ListItem.Property(backgroundName)]</label2>
+					<visible>StringCompare(Window.Property("groupname"),mainmenu)</visible>
+				</control>
 				<!-- Manage widgets -->
 				<control id="998" type="button">
 					<width>870</width>
@@ -251,7 +267,7 @@
 					<texturenofocus border="3">settings/button_no_focus.png</texturenofocus>
 					<label>-</label>
 				</control>
-				<!-- Add item -->
+				<!-- Add item 
 				<control type="button" id="301">
 					<width>870</width>
 					<height>84</height>
@@ -263,7 +279,7 @@
 					<texturefocus border="3">settings/button_focus.png</texturefocus>
 					<texturenofocus border="3">settings/button_no_focus.png</texturenofocus>
 					<label>$ADDON[script.skinshortcuts 32000]</label>
-				</control>
+				</control>-->
 			</control>
 			<!-- Button grouplist -->
 			<control type="grouplist" id="9001">
@@ -289,6 +305,18 @@
 					<textoffsetx>23</textoffsetx>
 					<textoffsety>27</textoffsety>
 					<label>$ADDON[script.skinshortcuts 32028]</label>
+				</control>
+				<!-- Add item -->
+				<control type="button" id="301">
+					<width>320</width>
+					<height>76</height>
+					<align>center</align>
+					<aligny>top</aligny>
+					<font>Med24</font>
+					<onup>303</onup>
+					<textoffsetx>23</textoffsetx>
+					<textoffsety>27</textoffsety>
+					<label>$ADDON[script.skinshortcuts 32000]</label>
 				</control>
 				<!-- Cancel Button -->
 				<control type="button" id="21">

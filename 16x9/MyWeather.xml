@@ -4,6 +4,18 @@
 	<backgroundcolor>0xff12161b</backgroundcolor>
 	<defaultcontrol always="true">100</defaultcontrol>
 	<controls>
+		<control type="image">
+			<width>1920</width>
+			<height>1080</height>
+			<texture fallback="weather/background/na.jpg">$INFO[Window(Weather).Property(Current.FanartCode),weather/background/,.jpg]</texture>
+		</control>
+		<control type="image">
+			<top>148</top>
+			<width>1920</width>
+			<height>812</height>
+			<texture>views/OverlayNF.png</texture>
+		</control>
+
 		<control type="group">
 			<left>128</left>
 			<animation type="WindowOpen">
@@ -14,17 +26,6 @@
 				<effect end="200,0" start="0,0" time="200" type="slide" />
 				<effect end="0" start="100" time="200" type="fade" />
 			</animation>
-			<control type="image">
-				<width>1664</width>
-				<height>1080</height>
-				<texture fallback="weather/background/na.jpg">$INFO[Window(Weather).Property(Current.FanartCode),weather/background/,.jpg]</texture>
-			</control>
-			<control type="image">
-				<top>148</top>
-				<width>1664</width>
-				<height>812</height>
-				<texture>views/OverlayNF.png</texture>
-			</control>
 			<control type="group">
 				<left>48</left>
 				<top>183</top>

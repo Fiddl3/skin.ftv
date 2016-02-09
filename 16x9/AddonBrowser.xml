@@ -5,6 +5,9 @@
 	<defaultcontrol always="true">50</defaultcontrol>
 	<views>50,51</views>
 	<controls>
+		<include>BackgroundImage</include>
+		<include>BackgroundContent</include>
+
 		<!-- Heading / Current item / Total items -->
 		<control type="grouplist">
 			<left>198</left>

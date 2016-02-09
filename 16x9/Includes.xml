@@ -20,13 +20,58 @@
 		<width>1920</width>
 		<height>1080</height>
 	</include>
+
 	<!-- Background image -->
 	<include name="BackgroundImage">
 		<control type="image">
 			<include>FullscreenDimensions</include>
-			<texture>special://skin/extras/backgrounds/default.png</texture>
+			<texture background="true">special://skin/extras/backgrounds/default.png</texture>
 		</control>
 	</include>
+
+	<!-- Background Content -->
+	<include name="BackgroundContent">
+		<control type="group">
+			<!-- Video&Visualisation on Background -->
+			<control type="visualisation">
+				<include>FullscreenDimensions</include>
+				<visible>Player.HasAudio</visible>
+				<visible>IsEmpty(Visualisation.Enabled)</visible>
+				<animation effect="fade" start="100" end="40" time="300" condition="Window.IsActive(PlayerControls)">Conditional</animation>
+			</control>
+			<control type="videowindow">
+				<description>Video</description>
+				<include>FullscreenDimensions</include>
+				<visible>Player.HasVideo</visible>
+			</control>
+			<!-- Fanart Background -->
+			<control type="image">
+				<include>FullscreenDimensions</include>
+				<texture background="true">$INFO[Container(9000).ListItem.Property(Background)]</texture>
+				<fadetime>500</fadetime>
+				<visible>Window.IsActive(home) + !Player.HasVideo + !Player.HasAudio</visible>
+				<visible>![SubString(Container(9000).ListItem.Property(background),\,Right) | SubString(Container(9000).ListItem.Property(background),/,Right)]</visible>
+			</control>
+			<control type="multiimage">
+				<include>FullscreenDimensions</include>
+				<imagepath background="true">$INFO[Container(9000).ListItem.Property(Background)]</imagepath>
+				<timeperimage>8000</timeperimage>
+				<randomize>true</randomize>
+				<fadetime>500</fadetime>
+				<visible>Window.IsActive(home) + !Player.HasVideo + !Player.HasAudio</visible>
+				<visible>SubString(Container(9000).ListItem.Property(background),\,Right) | SubString(Container(9000).ListItem.Property(background),/,Right)</visible>
+			</control>
+			<!-- Background Dimmer -->
+			<control type="image">
+				<include>FullscreenDimensions</include>
+				<aspectratio>stretch</aspectratio>
+				<colordiffuse>0xcc12161b</colordiffuse>
+				<texture background="true">special://skin/extras/backgrounds/detail_dimmer.png</texture>
+				<visible>Player.HasVideo | Player.HasAudio | !IsEmpty(Container(9000).ListItem.Property(background))</visible>
+			</control>
+		</control>
+	</include>
+	
 	<!-- Dialog background image -->
 	<include name="DialogBackgroundImage">
 		<control type="image">
@@ -76,6 +121,35 @@
 				<texture background="true">$VAR[Fanart]</texture>
 			</control>
 		</control>
+	</include>
+	
+	<!-- Shine Animations -->
+	<include name="ShineBase">
+		<top>48</top>
+		<aspectratio align="center">scale</aspectratio>
+		<timeperimage>35</timeperimage>
+		<fadetime>0</fadetime>
+		<pauseatend>3000</pauseatend>
+		<randomize>false</randomize>
+		<loop>true</loop>
+	</include>
+	<include name="ShinePortrait">
+		<include>ShineBase</include>
+		<width>320</width>
+		<height>480</height>
+		<imagepath>views/shine/portrait/</imagepath>
+	</include>
+	<include name="ShineWide">
+		<include>ShineBase</include>
+		<width>640</width>
+		<height>480</height>
+		<imagepath>views/shine/portrait/</imagepath>
+	</include>
+	<include name="ShineSquare">
+		<include>ShineBase</include>
+		<width>480</width>
+		<height>480</height>
+		<imagepath>views/shine/square/</imagepath>
 	</include>
 	<!-- No textures -->
 	<include name="NoTextures">

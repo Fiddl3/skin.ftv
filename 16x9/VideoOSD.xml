@@ -2,11 +2,11 @@
 <window>
 	<!-- videoosd -->
 	<onload condition="!Skin.HasSetting(HideOSDControls)">SetFocus(304)</onload>
-	<onload condition="Skin.HasSetting(HideOSDControls) + system.getbool(videoplayer.autoplaynextitem)">SetFocus(16)</onload>
-	<onload condition="Skin.HasSetting(HideOSDControls) + !system.getbool(videoplayer.autoplaynextitem)">SetFocus(15)</onload>
+	<onload condition="!SubString(Player.Title,introMovie) + !Skin.HasSetting(HideOSDControls) + system.getbool(videoplayer.autoplaynextitem)">SetFocus(16)</onload>
+	<onload condition="!SubString(Player.Title,introMovie) + Skin.HasSetting(HideOSDControls) + !system.getbool(videoplayer.autoplaynextitem)">SetFocus(15)</onload>
 	<controls>
 		<control type="group">
-			<visible>!Window.IsVisible(osdvideosettings) + !Window.IsVisible(osdaudiosettings) + !Window.IsVisible(videobookmarks) + !Window.IsVisible(subtitlesearch)</visible>
+			<visible>!SubString(Player.Title,introMovie) + !Window.IsVisible(osdvideosettings) + !Window.IsVisible(osdaudiosettings) + !Window.IsVisible(videobookmarks) + !Window.IsVisible(subtitlesearch)</visible>
 			<control type="image">
 				<width>1920</width>
 				<height>210</height>

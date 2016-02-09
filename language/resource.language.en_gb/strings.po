@@ -876,3 +876,55 @@ msgstr ""
 msgctxt "#31209"
 msgid "Disable Higher Levels"
 msgstr ""
+
+msgctxt "#31210"
+msgid "Enabled"
+msgstr ""
+
+msgctxt "#31211"
+msgid "Disabled"
+msgstr ""
+
+msgctxt "#31212"
+msgid "Color Diffuse"
+msgstr ""
+
+msgctxt "#31213"
+msgid "Scrolling Titles"
+msgstr ""
+
+msgctxt "#31214"
+msgid "Style 1"
+msgstr ""
+
+msgctxt "#31215"
+msgid "Style 2"
+msgstr ""
+
+msgctxt "#31216"
+msgid "Random music fanart"
+msgstr ""
+
+msgctxt "#31217"
+msgid "Install Artist Slideshow add-on to enable this feature"
+msgstr ""
+
+msgctxt "#31218"
+msgid "Blurred album thumb"
+msgstr ""
+
+msgctxt "#31219"
+msgid "Install Toolbox script to enable this feature"
+msgstr ""
+
+msgctxt "#31220"
+msgid "Background"
+msgstr ""
+
+msgctxt "#31221"
+msgid "Background Animation"
+msgstr ""
+
+msgctxt "#31222"
+msgid "Background Transparency"
+msgstr ""

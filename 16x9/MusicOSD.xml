@@ -3,308 +3,503 @@
 	<!-- musicosd -->
 	<onload condition="!Skin.HasSetting(HideOSDControls)">SetFocus(304)</onload>
 	<onload condition="Skin.HasSetting(HideOSDControls)">SetFocus(11)</onload>
+	<onload>Skin.Reset(DummyShowVisSettings)</onload>
+	<onload>Skin.Reset(DummyShowBGSettings)</onload>
 	<controls>
 		<control type="group">
 			<animation effect="fade" start="100" end="0" time="200" condition="Window.IsVisible(visualisationpresetlist) | Window.IsVisible(addonsettings) | Window.IsVisible(selectdialog)">Conditional</animation>
-			<control type="image">
-				<width>1920</width>
-				<height>210</height>
-				<texture border="1">osd/mask_top.png</texture>
-			</control>
-			<control type="image">
-				<bottom>0</bottom>
-				<width>1920</width>
-				<height>720</height>
-				<texture border="1">osd/mask_bottom.png</texture>
-				<visible>!Player.Forwarding + !Player.Rewinding</visible>
-			</control>
-			<control type="image">
-				<bottom>0</bottom>
-				<width>1980</width>
-				<height>120</height>
-				<texture>osd/mask.png</texture>
-				<visible>Player.Forwarding | Player.Rewinding</visible>
-			</control>
-			<control type="grouplist">
-				<left>20</left>
-				<top>64</top>
-				<width>1880</width>
-				<height>50</height>
-				<align>center</align>
-				<itemgap>0</itemgap>
-				<orientation>horizontal</orientation>
-				<!--  Artist title -->
-				<control type="label">
-					<width>auto</width>
+			<animation effect="fade" start="100" end="0" time="200">WindowClose</animation>
+			<!-- Top -->
+			<control type="group">
+				<animation type="WindowOpen">
+					<effect effect="fade" start="0" end="100" time="200" />
+					<effect type="slide" start="0,-150" time="200" />
+				</animation>
+				<control type="image">
+					<width>1920</width>
+					<height>210</height>
+					<texture border="1">osd/mask_top.png</texture>
+				</control>
+				<control type="grouplist">
+					<left>20</left>
+					<top>64</top>
+					<width>1880</width>
 					<height>50</height>
-					<font>Med40</font>
-					<textcolor>ffeaeaea</textcolor>
+					<align>center</align>
+					<itemgap>0</itemgap>
+					<orientation>horizontal</orientation>
+					<!--  Artist title -->
+					<control type="label">
+						<width>auto</width>
+						<height>50</height>
+						<font>Med40</font>
+						<textcolor>ffeaeaea</textcolor>
+						<shadowcolor>ff000000</shadowcolor>
+						<label>$INFO[MusicPlayer.Title]</label>
+					</control>
+				</control>
+				<!--  Song title -->
+				<control type="label">
+					<left>20</left>
+					<top>127</top>
+					<width>1880</width>
+					<height>40</height>
+					<align>center</align>
+					<font>Light26</font>
+					<textcolor>fffe8e8e8</textcolor>
 					<shadowcolor>ff000000</shadowcolor>
-					<label>$INFO[MusicPlayer.Title]</label>
+					<label>$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album, / ,]</label>
 				</control>
 			</control>
-			<!--  Song title -->
-			<control type="label">
-				<left>20</left>
-				<top>127</top>
-				<width>1880</width>
-				<height>40</height>
-				<align>center</align>
-				<font>Light26</font>
-				<textcolor>fffe8e8e8</textcolor>
-				<shadowcolor>ff000000</shadowcolor>
-				<label>$INFO[MusicPlayer.Artist]$INFO[MusicPlayer.Album, / ,]</label>
-			</control>
-			<!--  Progress bar -->
-			<control id="99" type="progress">
-				<left>92</left>
-				<bottom>93</bottom>
-				<width>1735</width>
-				<height>11</height>
-				<reveal>true</reveal>
-				<info>Player.Progress</info>
-				<texturebg border="4">osd/progress_back.png</texturebg>
-				<lefttexture>-</lefttexture>
-				<midtexture border="4">osd/progress_bar.png</midtexture>
-				<righttexture>-</righttexture>
-				<overlaytexture>-</overlaytexture>
-			</control>
-			<control type="grouplist">
-				<left>92</left>
-				<bottom>38</bottom>
-				<width>800</width>
-				<height>40</height>
-				<itemgap>4</itemgap>
-				<orientation>horizontal</orientation>
-				<usecontrolcoords>true</usecontrolcoords>
-				<!--  Current position -->
+
+			<!-- Bottom -->
+			<control type="group">
+				<animation type="WindowOpen">
+					<effect effect="fade" start="0" end="100" time="200" />
+					<effect type="slide" start="0,400" time="200" />
+				</animation>
+
+				<control type="image">
+					<bottom>0</bottom>
+					<width>1920</width>
+					<height>720</height>
+					<texture border="1">osd/mask_bottom.png</texture>
+					<visible>!Player.Forwarding + !Player.Rewinding</visible>
+				</control>
+				<control type="image">
+					<bottom>0</bottom>
+					<width>1980</width>
+					<height>120</height>
+					<texture>osd/mask.png</texture>
+					<visible>Player.Forwarding | Player.Rewinding</visible>
+				</control>
+
+				<!--  Progress bar -->
+				<control id="99" type="progress">
+					<left>92</left>
+					<bottom>93</bottom>
+					<width>1735</width>
+					<height>11</height>
+					<reveal>true</reveal>
+					<info>Player.Progress</info>
+					<texturebg border="4">osd/progress_back.png</texturebg>
+					<lefttexture>-</lefttexture>
+					<midtexture border="4">osd/progress_bar.png</midtexture>
+					<righttexture>-</righttexture>
+					<overlaytexture>-</overlaytexture>
+				</control>
+				<control type="grouplist">
+					<left>92</left>
+					<bottom>38</bottom>
+					<width>800</width>
+					<height>40</height>
+					<itemgap>4</itemgap>
+					<orientation>horizontal</orientation>
+					<usecontrolcoords>true</usecontrolcoords>
+					<!--  Current position -->
+					<control type="label">
+						<width>auto</width>
+						<height>34</height>
+						<font>Light27</font>
+						<textcolor>fff3f3f3</textcolor>
+						<label>$VAR[PlayerTime]</label>
+					</control>
+					<!--  Divider -->
+					<control type="label">
+						<width>auto</width>
+						<height>34</height>
+						<font>Light27</font>
+						<textcolor>ff696969</textcolor>
+						<label>/</label>
+						<visible>!IsEmpty(Player.Time) + !IsEmpty(Player.Duration)</visible>
+					</control>
+					<!--  Total length -->
+					<control type="label">
+						<width>auto</width>
+						<height>34</height>
+						<font>Light27</font>
+						<textcolor>ff696969</textcolor>
+						<label>$VAR[PlayerDuration]</label>
+					</control>
+				</control>
+				<control id="300" type="grouplist">
+					<centerleft>50%</centerleft>
+					<bottom>26</bottom>
+					<width>800</width>
+					<height>64</height>
+					<onup>200</onup>
+					<itemgap>0</itemgap>
+					<align>center</align>
+					<orientation>horizontal</orientation>
+					<defaultcontrol always="true">204</defaultcontrol>
+					<visible>!Skin.HasSetting(HideOSDControls)</visible>
+					<!-- Skip Back -->
+					<control type="button" id="301">
+						<width>64</width>
+						<height>64</height>
+						<font>-</font>
+						<texturefocus>osd/osd_prev_fo.png</texturefocus>
+						<texturenofocus>osd/osd_prev_nf.png</texturenofocus>
+						<onclick>PlayerControl(Previous)</onclick>
+					</control>
+					<!-- Rewind -->
+					<control type="button" id="302">
+						<width>64</width>
+						<height>64</height>
+						<font>-</font>
+						<texturefocus>osd/osd_rw_fo.png</texturefocus>
+						<texturenofocus>osd/osd_rw_nf.png</texturenofocus>
+						<onclick>PlayerControl(Rewind)</onclick>
+					</control>
+					<!-- Stop -->
+					<control type="button" id="303">
+						<width>64</width>
+						<height>64</height>
+						<font>-</font>
+						<texturefocus>osd/osd_stop_fo.png</texturefocus>
+						<texturenofocus>osd/osd_stop_nf.png</texturenofocus>
+						<onclick>PlayerControl(Stop)</onclick>
+					</control>
+					<!-- Play/Pause -->
+					<control type="togglebutton" id="304">
+						<width>64</width>
+						<height>64</height>
+						<font>-</font>
+						<texturefocus>osd/osd_pause_fo.png</texturefocus>
+						<texturenofocus>osd/osd_pause_nf.png</texturenofocus>
+						<usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
+						<alttexturefocus>osd/osd_play_fo.png</alttexturefocus>
+						<alttexturenofocus>osd/osd_play_nf.png</alttexturenofocus>
+						<onclick>PlayerControl(Play)</onclick>
+					</control>
+					<!-- Fast Forward -->
+					<control type="button" id="305">
+						<width>64</width>
+						<height>64</height>
+						<font>-</font>
+						<texturefocus>osd/osd_ff_fo.png</texturefocus>
+						<texturenofocus>osd/osd_ff_nf.png</texturenofocus>
+						<onclick>PlayerControl(Forward)</onclick>
+					</control>
+					<!-- Next -->
+					<control type="button" id="306">
+						<width>64</width>
+						<height>64</height>
+						<font>-</font>
+						<texturefocus>osd/osd_next_fo.png</texturefocus>
+						<texturenofocus>osd/osd_next_nf.png</texturenofocus>
+						<onclick>PlayerControl(Next)</onclick>
+					</control>
+				</control>
+				<!--  Current time -->
 				<control type="label">
-					<width>auto</width>
-					<height>34</height>
-					<font>Light27</font>
+					<right>92</right>
+					<bottom>45</bottom>
+					<width>800</width>
+					<height>30</height>
+					<font>Reg27</font>
+					<align>right</align>
 					<textcolor>fff3f3f3</textcolor>
-					<label>$VAR[PlayerTime]</label>
+					<label>$INFO[System.Time]</label>
 				</control>
-				<!--  Divider -->
-				<control type="label">
-					<width>auto</width>
-					<height>34</height>
-					<font>Light27</font>
-					<textcolor>ff696969</textcolor>
-					<label>/</label>
-					<visible>!IsEmpty(Player.Time) + !IsEmpty(Player.Duration)</visible>
-				</control>
-				<!--  Total length -->
-				<control type="label">
-					<width>auto</width>
-					<height>34</height>
-					<font>Light27</font>
-					<textcolor>ff696969</textcolor>
-					<label>$VAR[PlayerDuration]</label>
-				</control>
-			</control>
-			<control id="300" type="grouplist">
-				<centerleft>50%</centerleft>
-				<bottom>26</bottom>
-				<width>800</width>
-				<height>64</height>
-				<onup>11</onup>
-				<itemgap>0</itemgap>
-				<align>center</align>
-				<orientation>horizontal</orientation>
-				<defaultcontrol always="true">204</defaultcontrol>
-				<visible>!Skin.HasSetting(HideOSDControls)</visible>
-				<!-- Skip Back -->
-				<control type="button" id="301">
-					<width>64</width>
-					<height>64</height>
-					<font>-</font>
-					<texturefocus>osd/osd_prev_fo.png</texturefocus>
-					<texturenofocus>osd/osd_prev_nf.png</texturenofocus>
-					<onclick>PlayerControl(Previous)</onclick>
-				</control>
-				<!-- Rewind -->
-				<control type="button" id="302">
-					<width>64</width>
-					<height>64</height>
-					<font>-</font>
-					<texturefocus>osd/osd_rw_fo.png</texturefocus>
-					<texturenofocus>osd/osd_rw_nf.png</texturenofocus>
-					<onclick>PlayerControl(Rewind)</onclick>
-				</control>
-				<!-- Stop -->
-				<control type="button" id="303">
-					<width>64</width>
-					<height>64</height>
-					<font>-</font>
-					<texturefocus>osd/osd_stop_fo.png</texturefocus>
-					<texturenofocus>osd/osd_stop_nf.png</texturenofocus>
-					<onclick>PlayerControl(Stop)</onclick>
-				</control>
-				<!-- Play/Pause -->
-				<control type="togglebutton" id="304">
-					<width>64</width>
-					<height>64</height>
-					<font>-</font>
-					<texturefocus>osd/osd_pause_fo.png</texturefocus>
-					<texturenofocus>osd/osd_pause_nf.png</texturenofocus>
-					<usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
-					<alttexturefocus>osd/osd_play_fo.png</alttexturefocus>
-					<alttexturenofocus>osd/osd_play_nf.png</alttexturenofocus>
-					<onclick>PlayerControl(Play)</onclick>
-				</control>
-				<!-- Fast Forward -->
-				<control type="button" id="305">
-					<width>64</width>
-					<height>64</height>
-					<font>-</font>
-					<texturefocus>osd/osd_ff_fo.png</texturefocus>
-					<texturenofocus>osd/osd_ff_nf.png</texturenofocus>
-					<onclick>PlayerControl(Forward)</onclick>
-				</control>
-				<!-- Next -->
-				<control type="button" id="306">
-					<width>64</width>
-					<height>64</height>
-					<font>-</font>
-					<texturefocus>osd/osd_next_fo.png</texturefocus>
-					<texturenofocus>osd/osd_next_nf.png</texturenofocus>
-					<onclick>PlayerControl(Next)</onclick>
-				</control>
-			</control>
-			<!--  Current time -->
-			<control type="label">
-				<right>92</right>
-				<bottom>45</bottom>
-				<width>800</width>
-				<height>30</height>
-				<font>Reg27</font>
-				<align>right</align>
-				<textcolor>fff3f3f3</textcolor>
-				<label>$INFO[System.Time]</label>
-			</control>
-			<!-- Options -->
-			<control id="100" type="grouplist">
-				<left>92</left>
-				<bottom>128</bottom>
-				<width>600</width>
-				<height>600</height>
-				<align>right</align>
-				<itemgap>0</itemgap>
-				<onleft>noop</onleft>
-				<onright>200</onright>
-				<ondown condition="!Skin.HasSetting(HideOSDControls)">304</ondown>
-				<orientation>vertical</orientation>
-				<visible>!Player.Forwarding + !Player.Rewinding</visible>
-				<!-- Lyrics -->
-				<control type="button" id="9">
+				<!-- Options Left -->
+				<control id="100" type="grouplist">
+					<left>92</left>
+					<bottom>128</bottom>
 					<width>600</width>
-					<height>58</height>
-					<font>Light32</font>
-					<textcolor>ffffffff</textcolor>
-					<shadowcolor>ff000000</shadowcolor>
-					<focusedcolor>ffffc04b</focusedcolor>
-					<label>24013</label>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<onclick>Close</onclick>
-					<onclick condition="IsEmpty(Skin.String(LyricAddon))">Skin.SetAddon(LyricAddon,xbmc.python.lyrics)</onclick>
-					<onclick condition="!IsEmpty(Skin.String(LyricAddon))">XBMC.RunScript($INFO[Skin.String(LyricAddon)])</onclick>
-				</control>
-				<!-- Playlist -->
-				<control type="button" id="10">
-					<width>600</width>
-					<height>58</height>
-					<font>Light32</font>
-					<textcolor>ffffffff</textcolor>
-					<shadowcolor>ff000000</shadowcolor>
-					<focusedcolor>ffffc04b</focusedcolor>
-					<label>559</label>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<onclick>Close</onclick>
-					<onclick>ActivateWindow(MusicPlaylist)</onclick>
-				</control>
-				<!-- Repeat -->
-				<control type="button" id="7">
-					<width>600</width>
-					<height>58</height>
-					<font>Light32</font>
-					<textcolor>ffffffff</textcolor>
-					<shadowcolor>ff000000</shadowcolor>
-					<focusedcolor>ffffc04b</focusedcolor>
-					<label>$LOCALIZE[486]$INFO[Playlist.Repeat, : ]</label>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<onclick>PlayerControl(Repeat)</onclick>
-				</control>
-				<!-- Random -->
-				<control type="togglebutton" id="8">
-					<width>600</width>
-					<height>58</height>
-					<font>Light32</font>
-					<textcolor>ffffffff</textcolor>
-					<shadowcolor>ff000000</shadowcolor>
-					<focusedcolor>ffffc04b</focusedcolor>
-					<label>$LOCALIZE[590]$INFO[Playlist.Random, : ]</label>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<onclick>PlayerControl(Random)</onclick>
-				</control>
-			</control>
-			<!-- Options -->
-			<control id="200" type="grouplist">
-				<right>92</right>
-				<bottom>128</bottom>
-				<width>600</width>
-				<height>600</height>
-				<align>right</align>
-				<itemgap>0</itemgap>
-				<onleft>100</onleft>
-				<onright>noop</onright>
-				<ondown condition="!Skin.HasSetting(HideOSDControls)">304</ondown>
-				<orientation>vertical</orientation>
-				<visible>!Player.Forwarding + !Player.Rewinding</visible>
-				<!-- Visualisation -->
-				<control type="button" id="500">
-					<width>600</width>
-					<height>58</height>
-					<font>Light32</font>
+					<height>600</height>
 					<align>right</align>
-					<textcolor>ffffffff</textcolor>
-					<shadowcolor>ff000000</shadowcolor>
-					<focusedcolor>ffffc04b</focusedcolor>
-					<label>12006</label>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
+					<itemgap>0</itemgap>
+					<onleft>noop</onleft>
+					<onright>200</onright>
+					<defaultcontrol>8</defaultcontrol>
+					<ondown condition="!Skin.HasSetting(HideOSDControls)">304</ondown>
+					<orientation>vertical</orientation>
+					<visible>!Player.Forwarding + !Player.Rewinding</visible>
+					<!-- Lyrics -->
+					<control type="button" id="9">
+						<width>600</width>
+						<height>58</height>
+						<font>Light32</font>
+						<textcolor>ffffffff</textcolor>
+						<shadowcolor>ff000000</shadowcolor>
+						<focusedcolor>ffffc04b</focusedcolor>
+						<label>24013</label>
+						<texturefocus>-</texturefocus>
+						<texturenofocus>-</texturenofocus>
+						<onclick>Close</onclick>
+						<onclick condition="IsEmpty(Skin.String(LyricAddon))">Skin.SetAddon(LyricAddon,xbmc.python.lyrics)</onclick>
+						<onclick condition="!IsEmpty(Skin.String(LyricAddon))">XBMC.RunScript($INFO[Skin.String(LyricAddon)])</onclick>
+					</control>
+					<!-- Playlist -->
+					<control type="button" id="10">
+						<width>600</width>
+						<height>58</height>
+						<font>Light32</font>
+						<textcolor>ffffffff</textcolor>
+						<shadowcolor>ff000000</shadowcolor>
+						<focusedcolor>ffffc04b</focusedcolor>
+						<label>559</label>
+						<texturefocus>-</texturefocus>
+						<texturenofocus>-</texturenofocus>
+						<onclick>Close</onclick>
+						<onclick>ActivateWindow(MusicPlaylist)</onclick>
+					</control>
+					<!-- Repeat -->
+					<control type="button" id="7">
+						<width>600</width>
+						<height>58</height>
+						<font>Light32</font>
+						<textcolor>ffffffff</textcolor>
+						<shadowcolor>ff000000</shadowcolor>
+						<focusedcolor>ffffc04b</focusedcolor>
+						<label>$LOCALIZE[486]$INFO[Playlist.Repeat,: ]</label>
+						<texturefocus>-</texturefocus>
+						<texturenofocus>-</texturenofocus>
+						<onclick>PlayerControl(Repeat)</onclick>
+					</control>
+					<!-- Random -->
+					<control type="togglebutton" id="8">
+						<width>600</width>
+						<height>58</height>
+						<font>Light32</font>
+						<textcolor>ffffffff</textcolor>
+						<shadowcolor>ff000000</shadowcolor>
+						<focusedcolor>ffffc04b</focusedcolor>
+						<label>$LOCALIZE[590]$INFO[Playlist.Random,: ]</label>
+						<texturefocus>-</texturefocus>
+						<texturenofocus>-</texturenofocus>
+						<onclick>PlayerControl(Random)</onclick>
+					</control>
 				</control>
-				<!-- Visualisation presets list -->
-				<control type="button" id="12">
+				<!-- Options Right -->
+				<control id="200" type="group">
+					<right>92</right>
+					<bottom>128</bottom>
 					<width>600</width>
-					<height>58</height>
-					<font>Light32</font>
-					<align>right</align>
-					<textcolor>ffffffff</textcolor>
-					<shadowcolor>ff000000</shadowcolor>
-					<focusedcolor>ffffc04b</focusedcolor>
-					<label>$LOCALIZE[31047]</label>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<onclick>ActivateWindow(122)</onclick>
-				</control>
-				<!-- Visualisation settings -->
-				<control type="button" id="11">
-					<width>600</width>
-					<height>58</height>
-					<font>Light32</font>
-					<align>right</align>
-					<textcolor>ffffffff</textcolor>
-					<shadowcolor>ff000000</shadowcolor>
-					<focusedcolor>ffffc04b</focusedcolor>
-					<label>$LOCALIZE[250] $LOCALIZE[21417]</label>
-					<texturefocus>-</texturefocus>
-					<texturenofocus>-</texturenofocus>
-					<onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick>
+					<height>600</height>
+					<defaultcontrol>211</defaultcontrol>
+					<visible>!Player.Forwarding + !Player.Rewinding</visible>
+
+					<!-- Settings Menu -->
+					<control type="grouplist" id="210">
+						<align>right</align>
+						<onleft>100</onleft>
+						<onright>noop</onright>
+						<ondown condition="!Skin.HasSetting(HideOSDControls)">304</ondown>
+						<animation effect="fade" tween="cubic" easing="inout" start="0" end="100" time="200">VisibleChange</animation>
+						<visible>![Skin.HasSetting(DummyShowVisSettings) | Skin.HasSetting(DummyShowBGSettings)]</visible>
+						
+						<!-- Visualisation Settings -->
+						<control type="button" id="212">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<label>Visualisation Settings</label>
+							<onclick>Skin.ToggleSetting(DummyShowVisSettings)</onclick>
+							<onclick>SetFocus(500)</onclick>
+							<onright>Skin.ToggleSetting(DummyShowVisSettings)</onright>
+							<onright>SetFocus(500)</onright>
+						</control>
+						<!-- Background Settings -->
+						<control type="button" id="211">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<label>Background Settings</label>
+							<onright>Skin.ToggleSetting(DummyShowBGSettings)</onright>
+							<onright>SetFocus(231)</onright>
+							<onclick>Skin.ToggleSetting(DummyShowBGSettings)</onclick>
+							<onclick>SetFocus(231)</onclick>
+						</control>
+					</control>
+					<!-- Visualisation Settings -->
+					<control type="grouplist" id="220">
+						<align>right</align>
+						<onleft>Skin.ToggleSetting(DummyShowVisSettings)</onleft>
+						<onleft>SetFocus(212)</onleft>
+						<onright>noop</onright>
+						<animation effect="slide" tween="cubic" easing="inout" start="500" end="0,0" time="200">VisibleChange</animation>
+						<visible>Skin.HasSetting(DummyShowVisSettings)</visible>
+						<!-- Visualisation -->
+						<control type="button" id="500">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<!--label>12006</label-->
+							<label>$LOCALIZE[12006]$INFO[Visualisation.Name,: ]</label>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+						</control>
+						<!-- Visualisation presets list -->
+						<control type="button" id="221">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<label>$LOCALIZE[31047]$INFO[Visualisation.Preset,: ]</label>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<onclick>ActivateWindow(122)</onclick>
+							<visible>Visualisation.HasPresets</visible>
+						</control>
+						<!-- Visualisation settings -->
+						<control type="button" id="222">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<label>$LOCALIZE[250] $LOCALIZE[21417]</label>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<onclick>Addon.Default.OpenSettings(xbmc.player.musicviz)</onclick>
+							<visible>!IsEmpty(Visualisation.Name)</visible>
+						</control>
+						<!-- Back -->
+						<control type="button" id="223">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<label>Back</label>
+							<onclick>Skin.ToggleSetting(DummyShowVisSettings)</onclick>
+							<onclick>SetFocus(212)</onclick>
+						</control>
+					</control>
+					<!-- Background Settings -->
+					<control type="grouplist" id="230">
+						<align>right</align>
+						<onleft>Skin.ToggleSetting(DummyShowBGSettings)</onleft>
+						<onleft>SetFocus(211)</onleft>
+						<onright>noop</onright>
+						<visible>Skin.HasSetting(DummyShowBGSettings)</visible>
+						<animation effect="slide" tween="cubic" easing="inout" start="500" end="0,0" time="200">VisibleChange</animation>
+						
+						<!-- Background -->
+						<control type="button" id="231">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<label>$LOCALIZE[31220]: $VAR[VizBackgroundLabelVar]</label>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<onleft>$VAR[VizBackgroundLeftVar]</onleft>
+							<onright>$VAR[VizBackgroundClickVar]</onright>
+							<onclick>$VAR[VizBackgroundClickVar]</onclick>
+						</control>
+						<!-- Background Transparency -->
+						<control type="button" id="232">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<label>$LOCALIZE[31222]: $VAR[VizBackgroundTranspLabelVar]</label>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<onleft>$VAR[VizBackgroundTranspLeftVar]</onleft>
+							<onright>$VAR[VizBackgroundTranspClickVar]</onright>
+							<onclick>$VAR[VizBackgroundTranspClickVar]</onclick>
+						</control>
+						<!-- Background Animation -->
+						<control type="button" id="233">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<label>$LOCALIZE[31221]: $VAR[DisableAnimateFanartLabelVar]</label>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<onclick>Skin.ToggleSetting(Disable.AnimateFanart)</onclick>
+						</control>
+						
+						<!-- OSD Color Diffuse -->
+						<control type="button" id="234">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<label>$LOCALIZE[31212]: $VAR[DiffuseColorLabelVar]</label>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<onleft>$VAR[DiffuseColorLeftVar]</onleft>
+							<onright>$VAR[DiffuseColorClickVar]</onright>
+							<onclick>$VAR[DiffuseColorClickVar]</onclick>
+						</control>
+						<!-- Scrolling Titles -->
+						<control type="button" id="235">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<label>$LOCALIZE[31213]: $VAR[ScrollingTitlesLabelVar]</label>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<onleft>$VAR[ScrollingTitlesLeftVar]</onleft>
+							<onright>$VAR[ScrollingTitlesClickVar]</onright>
+							<onclick>$VAR[ScrollingTitlesClickVar]</onclick>
+						</control>
+						
+						<!-- Back -->
+						<control type="button" id="236">
+							<width>600</width>
+							<height>58</height>
+							<font>Light32</font>
+							<align>right</align>
+							<textcolor>ffffffff</textcolor>
+							<shadowcolor>ff000000</shadowcolor>
+							<focusedcolor>ffffc04b</focusedcolor>
+							<texturefocus>-</texturefocus>
+							<texturenofocus>-</texturenofocus>
+							<label>Back</label>
+							<onclick>Skin.ToggleSetting(DummyShowBGSettings)</onclick>
+							<onclick>SetFocus(211)</onclick>
+						</control>
+
+					</control>
+								
 				</control>
 			</control>
 		</control>

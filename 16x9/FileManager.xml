@@ -4,6 +4,9 @@
 	<backgroundcolor>0xff12161b</backgroundcolor>
 	<defaultcontrol always="true">20</defaultcontrol>
 	<controls>
+		<include>BackgroundImage</include>
+		<include>BackgroundContent</include>
+
 		<!-- Heading -->
 		<control type="label">
 			<left>90</left>

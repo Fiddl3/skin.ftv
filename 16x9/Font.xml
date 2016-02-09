@@ -39,6 +39,10 @@
 			<name>Light144</name>
 			<filename>HelveticaNeue_Lt.ttf</filename>
 			<size>144</size>
+		</font>		<font>
+			<name>Light550</name>
+			<filename>HelveticaNeue_Lt.ttf</filename>
+			<size>550</size>
 		</font>
 		<font>
 			<name>Light80</name>
@@ -310,6 +314,23 @@
 			<filename>HelveticaNeue_Bold.ttf</filename>
 			<size>24</size>
 		</font>
+		<!-- Special -->
+		<font>
+			<name>Light230</name>
+			<filename>HelveticaNeue_Lt.ttf</filename>
+			<size>230</size>
+		</font>
+		<font>
+			<name>Light110</name>
+			<filename>HelveticaNeue_Lt.ttf</filename>
+			<size>110</size>
+		</font>
+		<font>
+			<name>Light48</name>
+			<filename>HelveticaNeue_Lt.ttf</filename>
+			<size>48</size>
+		</font>
+
 		<!-- Required for system -->
 		<font>
 			<name>font13</name>
